@@ -3,9 +3,10 @@ const User = mongoose.model("User", {
 
 
     username : {
-    type : String
+    type : String ,
+    unique : true 
     } ,
-    
+
     password : {
     type : String
 }

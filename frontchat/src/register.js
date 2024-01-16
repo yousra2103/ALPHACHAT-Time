@@ -1,11 +1,25 @@
+
 import { useState } from "react"
 
 export default function Register() {
     const [username , setUsername] = useState('');
     const [password , setPassword] = useState('');
+    async function register(ev) {
+        ev.preventDefault();
+		const data = await fetch( "http://localhost:4000/apichat/register", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify()
+		})
+			.then(res => res.json());
+            setUsername([...username,data]);
+            setPassword([...password,data]);
+    }
     return (
         <div className="bg-blue-50  h-screen flex items-center">
-       <form className="w-64 mx-auto">
+       <form className="w-64 mx-auto" onSubmit={register}>
 <input value={username} 
 onChange={ev => setUsername(ev.target.value)}
 type="text" placeholder="UserName"
